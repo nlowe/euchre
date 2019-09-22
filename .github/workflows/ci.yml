@@ -1,0 +1,36 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+
+      - name: Get Sources
+        uses: actions/checkout@v1
+
+      - name: Run Tests
+        run: go test -v -cover -covermode=count -coverprofile=./coverage.out ./...
+
+      # TODO: Coverage. Coveralls and Go don't seem to play nice with GitHub Actions right now...
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+
+      - name: Get Sources
+        uses: actions/checkout@v1
+
+      - name: Get Tools
+        run: GO111MODULE=off go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+
+      - name: Lint
+        run: $(go env GOPATH)/bin/golangci-lint run ./...
