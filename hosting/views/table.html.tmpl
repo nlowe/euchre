@@ -1,0 +1,23 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>{{ .Table }} | Euchre!</title>
+    <meta name="description" content="Euchre!">
+    <meta name="x-table-name" content="{{ .Table }}">
+
+    <link rel="stylesheet" href="/css/table.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.2.0/uuidv4.min.js" integrity="sha512-W6Yf3E7UBUKz5LqkjOHga4hkDX3huRhAvV8I6MFuZ0zX+5ttmVldY8nz9q26SwBItFrb9XSKNMiWEsKg8rDmXg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha512-ZDSPMa/JM1D+7kdg2x3BsruQ6T/JpJo3jWDWkCZsP+5yVyp1KfESqLI+7RqB5k24F7p2cV7i2YHh/890y6P6Sw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autobahn/20.6.1/autobahn.js" integrity="sha512-3bvVuolB1tMjQhC3ctoX9qN9eQgkY0vpCfk06z8La3Ul/OaumCwz7ydG7WMWp1+eVUV4F6RS0O600PcWucU/Ug==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Welcome to the {{ .Table }} table</h1>
+    <div id="join-code"></div>
+
+    <script type="text/javascript" src="/js/table.js"></script>
+</body>
+</html>
