@@ -24,7 +24,7 @@ type TableViewModel struct {
 
 func Parse() (*template.Template, error) {
 	t := template.New("")
-	return t, pkger.Walk("/hosting/views", func(p string, info os.FileInfo, err error) error {
+	return t, pkger.Walk("/hosting/views", func(p string, info os.FileInfo, _ error) error {
 		if !strings.HasSuffix(p, templateExtension) || info == nil || info.IsDir() {
 			return nil
 		}

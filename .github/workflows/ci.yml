@@ -29,8 +29,7 @@ jobs:
       - name: Get Sources
         uses: actions/checkout@v1
 
-      - name: Get Tools
-        run: GO111MODULE=off go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
-
-      - name: Lint
-        run: $(go env GOPATH)/bin/golangci-lint run ./...
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v1
+        with:
+          version: v1.28
