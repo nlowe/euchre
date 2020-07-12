@@ -8,10 +8,17 @@ jobs:
       - name: Setup
         uses: actions/setup-go@v1
         with:
-          go-version: 1.13
+          go-version: 1.14
 
       - name: Get Sources
         uses: actions/checkout@v1
+
+      - name: Cache Go Modules
+        uses: actions/cache@v1
+        with:
+          path: ~/go/pkg/mod # $GOPATH doesn't seem to be set by actions/setup-go
+          key: build-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
 
       - name: Run Tests
         run: go test -v -cover -covermode=count -coverprofile=./coverage.out ./...
@@ -24,10 +31,17 @@ jobs:
       - name: Setup
         uses: actions/setup-go@v1
         with:
-          go-version: 1.13
+          go-version: 1.14
 
       - name: Get Sources
         uses: actions/checkout@v1
+
+      - name: Cache Go Modules
+        uses: actions/cache@v1
+        with:
+          path: ~/go/pkg/mod # $GOPATH doesn't seem to be set by actions/setup-go
+          key: lint-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
 
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v1
